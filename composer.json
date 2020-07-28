@@ -1,0 +1,48 @@
+{
+    "name": "capeandbay/shipyard",
+    "description": "Client-side API Package for Laravel that permits two-way comminication between AnchorCMS and the Client API(s)",
+    "license": "Proprietary",
+    "authors": [
+        {
+            "name": "Angel Gonzalez",
+            "email": "angel@capeandbay.com",
+            "homepage": "https://capeandbay.com"
+        }
+    ],
+    "homepage": "https://github.com/capeandbay/shipyard",
+    "keywords": ["Laravel", "Shipyard", "Cape & Bay"],
+    "require": {
+        "illuminate/support": "~6|~7",
+        "ixudra/curl": "^6.19",
+        "goldspecdigital/laravel-eloquent-uuid": "^6.0|^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.0",
+        "mockery/mockery": "^1.1",
+        "orchestra/testbench": "~3|~4",
+        "sempro/phpunit-pretty-print": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "CapeAndBay\\Shipyard\\": "src"
+        },
+        "classmap": [
+            "src/Actions"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CapeAndBay\\Shipyard\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "CapeAndBay\\Shipyard\\ShipyardServiceProvider"
+            ],
+            "aliases": {
+                "Shipyard": "CapeAndBay\\Shipyard\\Facades\\Shipyard"
+            }
+        }
+    }
+}
