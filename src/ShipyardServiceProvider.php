@@ -5,6 +5,7 @@ namespace CapeAndBay\Shipyard;
 use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
+use CapeAndBay\Shipyard\Services\LibraryService;
 
 class ShipyardServiceProvider extends ServiceProvider
 {
@@ -68,7 +69,8 @@ class ShipyardServiceProvider extends ServiceProvider
 
         // Register the service the package provides.
         $this->app->singleton('shipyard', function ($app) {
-            return new Shipyard;
+            $lib = new LibraryService();
+            return new Shipyard($lib);
         });
     }
 

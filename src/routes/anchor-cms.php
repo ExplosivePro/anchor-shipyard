@@ -13,6 +13,12 @@ Route::group([
                     Route::post('/users', 'Features\Notifications\PushNotificationsShipyardController@get_users');
                 });
             });
+
+            Route::group(['prefix' => 'reports'], function () {
+                Route::group(['prefix' => 'kpi'], function () {
+                    Route::post('/', 'Features\Reports\KPIReportShipyardController@get_report');
+                });
+            });
         });
     });
 });
