@@ -14,7 +14,7 @@ class Budget extends Feature
         $total_spend = 0,
         $fb_spend = 0,
         $google_spend = 0;
-    
+
     public const ROI3 = 108;
     public const ROI12 = 360;
     private $uuid;
@@ -136,5 +136,10 @@ class Budget extends Feature
     public function getClubId()
     {
         return $this->club_id;
+    }
+
+    public function getBudgetUUID()
+    {
+        return $this->uuid;
     }
 }
