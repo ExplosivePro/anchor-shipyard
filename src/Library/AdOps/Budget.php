@@ -14,7 +14,7 @@ class Budget extends Feature
         $total_spend = 0,
         $fb_spend = 0,
         $google_spend = 0;
-    protected $available_budgets = [];
+    
     public const ROI3 = 108;
     public const ROI12 = 360;
     private $uuid;
@@ -89,6 +89,28 @@ class Budget extends Feature
         return $this->calculateROI($memberships_sold, $type, 12);
     }
 
+    public function getBudget($type = 'total')
+    {
+        switch($type)
+        {
+            case 'total':
+                $results = $this->fb_budget + $this->google_budget;
+                break;
+
+            case 'fb':
+                $results = $this->fb_budget;
+                break;
+
+            case 'google':
+                $results = $this->google_budget;
+                break;
+            default:
+                $results = false;
+        }
+
+        return $results;
+    }
+
     public function getSpend($type = 'total')
     {
         switch($type)
@@ -102,7 +124,7 @@ class Budget extends Feature
                 break;
 
             case 'google':
-                $results = $this->google_budget;
+                $results = $this->google_spend;
                 break;
             default:
                 $results = false;
