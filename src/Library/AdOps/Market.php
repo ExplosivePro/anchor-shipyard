@@ -92,4 +92,9 @@ class Market extends Feature
     {
         return $this->market;
     }
+
+    public function getBudgets()
+    {
+        return $this->budgets;
+    }
 }

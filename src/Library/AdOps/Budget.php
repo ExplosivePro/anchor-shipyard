@@ -2,6 +2,7 @@
 
 namespace CapeAndBay\Shipyard\Library\AdOps;
 
+use Ixudra\Curl\Facades\Curl;
 use CapeAndBay\Shipyard\Library\Feature;
 
 class Budget extends Feature
@@ -13,6 +14,7 @@ class Budget extends Feature
         $total_spend = 0,
         $fb_spend = 0,
         $google_spend = 0;
+    protected $available_budgets = [];
     public const ROI3 = 108;
     public const ROI12 = 360;
     private $uuid;
@@ -107,5 +109,10 @@ class Budget extends Feature
         }
 
         return $results;
+    }
+
+    public function getClubId()
+    {
+        return $this->club_id;
     }
 }
