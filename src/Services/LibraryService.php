@@ -9,14 +9,14 @@ class LibraryService
 
     }
 
-    public function retrieve($feature = '')
+    public function retrieve($feature = '', $option = null)
     {
         $results = false;
 
         switch($feature)
         {
             case 'ad-budgets':
-                $results = $this->getClientBudget();
+                $results = $this->getClientBudget($option);
                 break;
 
             default:
@@ -42,13 +42,21 @@ class LibraryService
         return new $results;
     }
 
-    public function getClientBudget()
+    public function getClientBudget($date = null)
     {
         $results = false;
 
         $budget_model_name = config('shipyard.class_maps.ad-budgets');
         $budget_model = new $budget_model_name();
-        $response = $budget_model->anchorCMS_client->get($budget_model->budgets_url());
+        if(!is_null($date))
+        {
+            $response = $budget_model->anchorCMS_client->get($budget_model->budgets_url()."?date={$date}");
+        }
+        else
+        {
+            $response = $budget_model->anchorCMS_client->get($budget_model->budgets_url());
+        }
+
 
         if($response && array_key_exists('success', $response) && ($response['success'] == true))
         {
