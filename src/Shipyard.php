@@ -13,11 +13,11 @@ class Shipyard
         $this->library = $lib;
     }
 
-    public function get($feature = '')
+    public function get($feature = '', $option = null)
     {
         $results = false;
 
-        $asset = $this->library->retrieve($feature);
+        $asset = $this->library->retrieve($feature, $option);
 
         if($asset)
         {
