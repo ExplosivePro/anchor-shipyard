@@ -29,29 +29,22 @@ class KPIReportShipyardController extends Controller
 
                 $data = $this->request->all();
 
-                if(array_key_exists('budgets', $data))
+                if(array_key_exists('date', $data))
                 {
-                    if(array_key_exists('markets', $data))
-                    {
-                        $report = $action->$generate($data['budgets'], $data['markets']);
+                    $report = $action->$generate($data['date']);
 
-                        if($report)
-                        {
-                            $results = ['success' => true, 'report' => $report];
-                        }
-                        else
-                        {
-                            $results['reason'] = 'Unable to Generate Report';
-                        }
+                    if($report)
+                    {
+                        $results = ['success' => true, 'report' => $report];
                     }
                     else
                     {
-                        $results['reason'] = 'Missing Market Data';
+                        $results['reason'] = 'Unable to Generate Report';
                     }
                 }
                 else
                 {
-                    $results['reason'] = 'Missing Budget Data';
+                    $results['reason'] = 'Missing Date';
                 }
             }
             catch(\Exception $e) {

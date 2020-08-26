@@ -12,7 +12,6 @@ class LibraryService
     public function retrieve($feature = '', $option = null)
     {
         $results = false;
-
         switch($feature)
         {
             case 'ad-budgets':
