@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use CapeAndBay\Shipyard\Controllers\Controller;
 use CapeAndBay\Shipyard\Actions\PushNotifications\GetNotifiableUsers;
 use CapeAndBay\Shipyard\Actions\PushNotifications\GetNotificationFilters;
+use Illuminate\Support\Facades\Validator;
 
 class PushNotificationsShipyardController extends Controller
 {
@@ -65,13 +66,31 @@ class PushNotificationsShipyardController extends Controller
         // @todo - make the middleware for this.
         if(config('shipyard.push_notifications.enabled'))
         {
-            if($action->execute($this->request->all()))
+            $validated = Validator::make($this->request->all(), [
+                'users' => 'bail|required|array',
+                'msg'   => 'bail|required',
+                'notes_type' => 'bail|required',
+                'url' => 'required'
+            ]);
+
+            if ($validated->fails())
             {
-                $results = ['success' => true];
+                foreach($validated->errors()->toArray() as $col => $msg)
+                {
+                    $results['reason'] = $msg[0];
+                    break;
+                }
             }
             else
             {
-                $results['reason'] = 'Failed to Fire Message to User(s)';
+                if($action->execute($this->request->all()))
+                {
+                    $results = ['success' => true];
+                }
+                else
+                {
+                    $results['reason'] = 'Failed to Fire Message to User(s)';
+                }
             }
         }
 
