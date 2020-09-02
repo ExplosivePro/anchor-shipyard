@@ -13,6 +13,7 @@ class PushNotifications extends Model
     protected $table, $connection;
 
     protected $primaryKey = 'id';
+    public $incrementing = false;
 
     protected $keyType = 'string';
 
