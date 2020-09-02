@@ -11,6 +11,7 @@ Route::group([
                 Route::group(['prefix' => 'push'], function () {
                     Route::get('/filters', 'Features\Notifications\PushNotificationsShipyardController@get_filters');
                     Route::post('/users', 'Features\Notifications\PushNotificationsShipyardController@get_users');
+                    Route::post('/fire', 'Features\Notifications\PushNotificationsShipyardController@fire_message');
                 });
             });
 

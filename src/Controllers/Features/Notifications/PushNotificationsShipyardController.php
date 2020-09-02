@@ -2,6 +2,7 @@
 
 namespace CapeAndBay\Shipyard\Controllers\Features\Notifications;
 
+use CapeAndBay\Shipyard\Actions\PushNotifications\FireMessageToUsers;
 use Illuminate\Http\Request;
 use CapeAndBay\Shipyard\Controllers\Controller;
 use CapeAndBay\Shipyard\Actions\PushNotifications\GetNotifiableUsers;
@@ -50,10 +51,29 @@ class PushNotificationsShipyardController extends Controller
             }
             else
             {
-                $results['reason'] = 'Failed to Get Filters';
+                $results['reason'] = 'Failed to Get Users';
             }
         }
 
+        return response()->json($results);
+    }
+
+    public function fire_message(FireMessageToUsers $action)
+    {
+        $results = ['success' => false, 'reason' => 'Feature Not Activated'];
+
+        // @todo - make the middleware for this.
+        if(config('shipyard.push_notifications.enabled'))
+        {
+            if($action->execute($this->request->all()))
+            {
+                $results = ['success' => true];
+            }
+            else
+            {
+                $results['reason'] = 'Failed to Fire Message to User(s)';
+            }
+        }
 
         return response()->json($results);
     }
