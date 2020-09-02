@@ -39,7 +39,7 @@ class FireMessageToUsers
 
                     if($response = $this->fireExpoMessages($payload, $note))
                     {
-
+                        $results = ['success' => true];
                     }
                     break;
 

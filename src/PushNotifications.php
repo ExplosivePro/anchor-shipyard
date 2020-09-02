@@ -2,20 +2,14 @@
 
 namespace CapeAndBay\Shipyard;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
+use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Model;
 
 class PushNotifications extends Model
 {
-    use SoftDeletes, Uuid;
+    use SoftDeletes;
 
     protected $table, $connection;
-
-    protected $primaryKey = 'id';
-    public $incrementing = false;
-
-    protected $keyType = 'string';
 
     protected $casts = [
         'id'=> 'uuid',
@@ -24,6 +18,7 @@ class PushNotifications extends Model
 
     public function __construct()
     {
+        parent::__construct();
         $this->table = config('shipyard.push_notifications.db_table_name');
         $this->connection = config('shipyard.push_notifications.db_connection');
     }
