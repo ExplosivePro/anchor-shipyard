@@ -12,8 +12,12 @@ class PushNotifications extends Model
 
     protected $table, $connection;
 
+    protected $primaryKey = 'id';
+
+    protected $keyType = 'string';
+
     protected $casts = [
-        'uuid'=> 'array',
+        'id'=> 'uuid',
         'data'=> 'array'
     ];
 
