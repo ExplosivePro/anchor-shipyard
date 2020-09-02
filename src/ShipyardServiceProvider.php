@@ -94,7 +94,7 @@ class ShipyardServiceProvider extends ServiceProvider
         // Publishing the configuration file.
         $this->publishes([
             __DIR__.'/../config/shipyard.php' => config_path('shipyard.php'),
-        ], 'shipyard.config');
+        ], 'config');
 
         // Publishing the views.
         /*$this->publishes([
@@ -110,6 +110,15 @@ class ShipyardServiceProvider extends ServiceProvider
         /*$this->publishes([
             __DIR__.'/../resources/lang' => resource_path('lang/vendor/capeandbay'),
         ], 'shipyard.views');*/
+
+        // Publishing the Migrations files.
+        if (! class_exists('CreatePushNotificationsTable')) {
+            $timestamp = date('Y_m_d_His', time());
+
+            $this->publishes([
+                __DIR__.'/../migrations/create_push_notifications_table.php.stub' => database_path("/migrations/{$timestamp}_create_push_notifications_table.php"),
+            ], 'migrations');
+        }
 
         // Registering package commands.
         // $this->commands([]);

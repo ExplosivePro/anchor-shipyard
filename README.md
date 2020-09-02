@@ -15,6 +15,27 @@ Via Composer
 $ composer require capeandbay/shipyard
 ```
 
+The package will automatically register itself.
+
+You can publish the migration with:
+```bash
+php artisan vendor:publish --provider="CapeAndBay\Shipyard\ShipyardServiceProvider" --tag="migrations"
+```
+
+After publishing the migration you can create the `push_notifications` table by running the migrations:
+
+
+```bash
+php artisan migrate
+```
+
+You can optionally publish the config file with:
+```bash
+php artisan vendor:publish --provider="CapeAndBay\Shipyard\ShipyardServiceProvider" --tag="config"
+```
+
+
+
 ## Usage
 
 ## Change log

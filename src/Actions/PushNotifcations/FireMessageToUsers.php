@@ -18,7 +18,14 @@ class FireMessageToUsers
     {
         $results = false;
 
-
+        /**
+         * STEPS
+         * @todo - Make Push Notifications migration and Model
+         * 1. make a push notification record
+         * 2. Check for notes type (expo)
+         * 3. Bunch up every 100 and queue up the job that will fire the expo job
+         * 4. Return true
+         */
 
         return $results;
     }

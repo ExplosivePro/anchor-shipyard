@@ -11,6 +11,8 @@ return [
     'push_notifications' => [
         'enabled' => env('ENABLE_ANCHOR_PUSH_NOTES', false),
         'notifiable_model' => CapeAndBay\Shipyard\PushNotifiables::class,
+        'db_connection' => env('DB_CONNECTION', 'mysql'),
+        'db_table_name' => 'push_notifications',
         // The Model Schema that are filterable
         'notifiable_model_filters' => [],
         // Currently supported - expo, firebase, & none

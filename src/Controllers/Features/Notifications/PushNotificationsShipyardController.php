@@ -70,7 +70,9 @@ class PushNotificationsShipyardController extends Controller
                 'users' => 'bail|required|array',
                 'msg'   => 'bail|required',
                 'notes_type' => 'bail|required',
-                'url' => 'required'
+                'url' => 'sometimes|required',
+                'title' => 'sometimes|required',
+                'data' => 'sometimes|required|array'
             ]);
 
             if ($validated->fails())
