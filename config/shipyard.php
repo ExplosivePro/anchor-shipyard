@@ -8,6 +8,10 @@ return [
         'ad-budgets'   => \CapeAndBay\Shipyard\Library\AdOps\Budget::class,
         'ad-markets'   => \CapeAndBay\Shipyard\Library\AdOps\Market::class
     ],
+    'event-sourcing' => [
+        'enabled' => env('ENABLE_ANCHOR_EVENT_SOURCING', false),
+        'driver' => 'spatie'
+    ],
     'push_notifications' => [
         'enabled' => env('ENABLE_ANCHOR_PUSH_NOTES', false),
         'notifiable_model' => CapeAndBay\Shipyard\PushNotifiables::class,

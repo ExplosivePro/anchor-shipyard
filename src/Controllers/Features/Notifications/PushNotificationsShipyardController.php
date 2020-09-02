@@ -70,6 +70,7 @@ class PushNotificationsShipyardController extends Controller
                 'users' => 'bail|required|array',
                 'msg'   => 'bail|required',
                 'notes_type' => 'bail|required',
+
                 'url' => 'sometimes|required',
                 'title' => 'sometimes|required',
                 'data' => 'sometimes|required|array'
@@ -85,14 +86,7 @@ class PushNotificationsShipyardController extends Controller
             }
             else
             {
-                if($action->execute($this->request->all()))
-                {
-                    $results = ['success' => true];
-                }
-                else
-                {
-                    $results['reason'] = 'Failed to Fire Message to User(s)';
-                }
+                $results = $action->execute($this->request->all());
             }
         }
 

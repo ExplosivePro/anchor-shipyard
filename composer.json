@@ -14,7 +14,8 @@
     "require": {
         "illuminate/support": "~6|~7",
         "ixudra/curl": "^6.19",
-        "goldspecdigital/laravel-eloquent-uuid": "^6.0|^7.0"
+        "goldspecdigital/laravel-eloquent-uuid": "^6.0|^7.0",
+        "spatie/laravel-event-sourcing": "^4.2"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.0",
