@@ -19,11 +19,26 @@ class Market extends Feature
         parent::__construct();
         $this->market = $name;
         $this->budgets = $budgets;
+
+        $this->setupTotals();
     }
 
     public function market_url()
     {
         return $this->anchorCMS_client->public_url().$this->clients_uri().$this->url;
+    }
+
+    private function setupTotals()
+    {
+        if(count($this->budgets) > 0)
+        {
+            foreach($this->budgets as $club_id => $budget)
+            {
+                $this->total_spend += $budget->getSpend('total');
+                $this->fb_spend += $budget->getSpend('fb');
+                $this->google_spend += $budget->getSpend('google');
+            }
+        }
     }
 
     private function calculateROI(int $memberships_sold, $spend, $type = 'total', $time = 3)
