@@ -1,13 +1,25 @@
-# Shipyard
+<img src="https://amchorcms-assets.s3.amazonaws.com/Anchor+CMS-black.png">
+# Cape & Bay Shipyard
 
-[![Latest Version on Packagist][ico-version]][link-packagist]
-[![Total Downloads][ico-downloads]][link-downloads]
-[![Build Status][ico-travis]][link-travis]
-[![StyleCI][ico-styleci]][link-styleci]
+Aside from being the primary meeting place of Cape & Bay employees, the Shipyard is 
+an in-development package for Laravel, complete routes, controllers, models, migrations 
+and a service provider. Designed to connect Cape & Bay projects to the AnchorCMS and 
+vice-versa. Requires Version 3 of the 
+[AnchorCMS](https://bitbucket.org/capeandbaytrufit/anchorcms-v3).
 
-This is where your description should go. Take a look at [contributing.md](contributing.md) to see a to do list.
+This README is for version 3.x of the 
+[AnchorCMS](https://bitbucket.org/capeandbaytrufit/anchorcms-v3), which is 
+implemented to work with Cape & Bay-produced Projects for PHP and Laravel 6, 7 and beyond.
 
-## Installation
+Jump To:
+* [Getting Started](_#Getting-Started_)
+* [Getting Help](_#Getting-Help_)
+* [Contributing](_#Contributing_)
+* [More Resources](_#Resources_)
+
+## Getting Started
+
+### Installation
 
 Via Composer
 
@@ -33,8 +45,63 @@ You can optionally publish the config file with:
 ```bash
 php artisan vendor:publish --provider="CapeAndBay\Shipyard\ShipyardServiceProvider" --tag="config"
 ```
+### Configuration
 
+By default, the package uses the following environment variables to auto-configure the plugin without modification:
+```
+ANCHOR_CLIENT_ID (default = '')
+ENABLE_ANCHOR_EVENT_SOURCING (default = false)
+ENABLE_ANCHOR_PUSH_NOTES (default = false)
+DB_CONNECTION (default = mysql)
+```
 
+To utilize certain features such as KPI Reports, customizing the file is recommended.
+
+To customize the configuration file, publish the package configuration using Artisan.
+
+```sh
+php artisan vendor:publish  --provider="Aws\Laravel\AwsServiceProvider"
+```
+
+The settings can be found in the generated `config/shipyard.php` configuration file. .
+
+```php
+<?php
+
+return [
+    'deets' => [
+        'client_uuid' => env('ANCHOR_CLIENT_ID', '')
+    ],
+    'class_maps' => [
+        'ad-budgets'   => \CapeAndBay\Shipyard\Library\AdOps\Budget::class,
+        'ad-markets'   => \CapeAndBay\Shipyard\Library\AdOps\Market::class
+    ],
+    'event-sourcing' => [
+        'enabled' => env('ENABLE_ANCHOR_EVENT_SOURCING', false),
+        'driver' => 'spatie'
+    ],
+    'push_notifications' => [
+        'enabled' => env('ENABLE_ANCHOR_PUSH_NOTES', false),
+        'notifiable_model' => CapeAndBay\Shipyard\PushNotifiables::class,
+        'db_connection' => env('DB_CONNECTION', 'mysql'),
+        'db_table_name' => 'push_notifications',
+        // The Model Schema that are filterable
+        'notifiable_model_filters' => [],
+        // Currently supported - expo, firebase, & none
+        'drivers' => ['none']
+    ],
+    'reports' => [
+        'kpi' => [
+            'enabled' => false,
+            'generator_class' => null,
+            'generator_method' => null
+        ],
+    ],
+];
+```
+
+Note that you can always swap out preloaded classes with a project's arbitrary own; 
+the Shipyard will use that class in that context.
 
 ## Usage
 
@@ -47,6 +114,8 @@ Please see the [changelog](changelog.md) for more information on what has change
 ``` bash
 $ composer test
 ```
+
+
 
 ## Contributing
 
