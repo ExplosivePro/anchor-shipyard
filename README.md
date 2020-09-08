@@ -1,8 +1,9 @@
 <img src="https://amchorcms-assets.s3.amazonaws.com/Anchor+CMS-black.png">
+
 # Cape & Bay Shipyard
 
 Aside from being the primary meeting place of Cape & Bay employees, the Shipyard is 
-an in-development package for Laravel, complete routes, controllers, models, migrations 
+an in-development package for Laravel, complete with routes, controllers, models, migrations 
 and a service provider. Designed to connect Cape & Bay projects to the AnchorCMS and 
 vice-versa. Requires Version 3 of the 
 [AnchorCMS](https://bitbucket.org/capeandbaytrufit/anchorcms-v3).
@@ -11,11 +12,6 @@ This README is for version 3.x of the
 [AnchorCMS](https://bitbucket.org/capeandbaytrufit/anchorcms-v3), which is 
 implemented to work with Cape & Bay-produced Projects for PHP and Laravel 6, 7 and beyond.
 
-Jump To:
-* [Getting Started](_#Getting-Started_)
-* [Getting Help](_#Getting-Help_)
-* [Contributing](_#Contributing_)
-* [More Resources](_#Resources_)
 
 ## Getting Started
 
