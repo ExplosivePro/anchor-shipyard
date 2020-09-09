@@ -100,6 +100,40 @@ Note that you can always swap out preloaded classes with a project's arbitrary o
 the Shipyard will use that class in that context.
 
 ## Usage
+There are two ways to utilize this package -
+
+1. Anchor-2-Project - This flow utilizes the built in routes and controllers bundled into the package. It adds routes under the 
+/anchor-cms subdirectory, permitting Anchor to communicate with the project, thus allowing the ability to "extend" AnchorCMS functionality by standardizing the way similar features are
+access from project to project by using one integration for all projects, this one. 
+A common use-case is when a project 
+is a mobile app's API that supports push-notifications. This package contains everything needed to allow
+Anchor to fire push notification requests to the project right out of the box with minimal configuration.
+  
+2. Project-2-Anchor - This flow permits the Project to communicate with Anchor in the form of
+an expressive library of classes objects that communicate with Anchor and allow for usage
+in a programatic way. Some features allow the Shipyard class (or bundled facade) to be used to retrieve special responses.
+For example, if a project utilizes KPI Ad Spend Reports, this developer could use the Market and Budget classes directly,
+or use the Shipyard class to call Anchor for data and populate a collection of Markets pre-fillled with Budget data from 
+the Anchor Server.
+
+### Anchor-2-Project
+#### Routes
+All routes live at <project-name>/api/anchor-cms. Except where, noted, all routes
+return a JSON-formatted response and do not currently require any validation
+to ensure requests come from Anchor. (this will change in the future)
+
+#### Push Notifications
+##### feature/notifications/push/filters - GET - Get the filters to be used in the AnchorCMS push-notification manager
+##### feature/notifications/push/users - POST - Get list of users and push tokens to be used in the AnchorCMS push-notification manager
+##### feature/notifications/push/fire - POST - Fires push notifications to a payload of project-scoped users (currenly only supports Expo. Apple and Firebase coming soon.)
+
+#### Key-Performance Indicators
+##### feature/reports/kpi/ - POST - Generate KPI Reports (requires project-side custom logic)
+
+
+### Project-2-Anchor
+
+
 
 ## Change log
 
